@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BSOD Simulation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #0078d7;
+  color: white;
+  font-family: "Segoe UI", Arial, sans-serif;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#face {
+  font-size: 18vh;
+  font-weight: bold;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+#message {
+  font-size: 2.5vh;
+  line-height: 1.6;
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  width: 70%;
+}
+
+#hint {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  font-size: 1.2vh;
+  opacity: 0.4;
+}
+</style>
+</head>
+
+<body>
+<div id="screen">
+  <div id="face">:(</div>
+
+  <div id="message">
+    Your PC ran into a problem and needs to restart.
+    <br><br>
+    We're just collecting some error info, and then we'll restart for you.
+    <br><br>
+    <span id="percent">0%</span> complete
+    <br><br>
+    For more information about this issue, visit:<br>
+    https://www.windows.com/stopcode
+    <br><br>
+    Stop code: CRITICAL_PROCESS_DIED
+  </div>
+
+  <div id="hint">Click anywhere to enter fullscreen · ESC to exit</div>
+</div>
+
+<script>
+let percent = 0;
+const percentEl = document.getElementById("percent");
+
+function updateProgress() {
+  if (percent < 20) {
+    percent++;
+    percentEl.textContent = percent + "%";
+    setTimeout(updateProgress, 200);
+  }
+}
+
+updateProgress();
+
+// Fullscreen on first click
+document.addEventListener("click", () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  }
+}, { once: true });
+
+// ESC hint auto-exit
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+});
+</script>
+</body>
+</html>
